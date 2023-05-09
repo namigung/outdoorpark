@@ -54,12 +54,17 @@ def update(new_seat, seat_num, num_tickets):
     row = int(seat_num[:-1])
     col = ord(col) -97
     n = 0
-    while n <= num_tickets + 2:
-        new_seat[row - 1][col + n] = "X"
-        new_seat[row + 1][col + n] = "X"
+    while n <= num_tickets + 1 and col + n < 27:
+        new_seat[row - 1][col - 1 + n] = "X"
+        new_seat[row + 1][col -  1 + n] = "X"
         n = n + 1
+    if col - 1 != 0:
+        new_seat[row][col - 1] = "X"
+    if col + num_tickets - 1 < 26:
+        new_seat[row][col + num_tickets] = "X"
     print('c')
     seating = new_seat
+    print_seating(seating)
     return None
 #declared dictionary for names and emails
 name_and_emailDict = {}
