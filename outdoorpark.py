@@ -126,13 +126,13 @@ print("Outdoor Park")
 print(dash)
 start = 0
 
-
 userquit = False
 while (not userquit):
     print("[b] buy" )
     print("[v]view seating" )
     print("[s] search for a customer by name and display their tickets purchased" )
     print("[d] display all the purchases made and total income")
+    print("[q to quit")
     command = input("Enter command: ")
 
     if command == "v": 
