@@ -48,8 +48,6 @@ def print_seating(seat_data):
     return seat_data
 
 def update(new_seat, seat_num, num_tickets):
-    if start != 0:
-        i = 0
     col = seat_num[len(seat_num) - 1]
     row = int(seat_num[:-1])
     col = ord(col) -97
@@ -64,8 +62,8 @@ def update(new_seat, seat_num, num_tickets):
         new_seat[row][col + num_tickets] = "X"
     print('c')
     seating = new_seat
-    print_seating(seating)
     return None
+
 #declared dictionary for names and emails
 name_and_emailDict = {}
 
@@ -94,10 +92,10 @@ def buy_tickets():
     seats_avail = check_seats(num_tickets, seat_num)
     if seats_avail:
         update(seating, seat_num, num_tickets)
-    name = input("what is your name? ")
+    name = input("what is your name? ").lower()
     email = input("what is your email address?" )
     seat_type = input("What type of seats would you like to buy?").lower()
-    name_and_emailDict[name] = seat_num
+    name_and_emailDict[name] = str(num_tickets) + " starting at " + seat_num + ", " + seat_type
     seatcost = 0
     if seat_type == "front":
         seatcost = 80
@@ -105,7 +103,7 @@ def buy_tickets():
         seatcost = 50
     else:
         seatcost = 25
-    total_cost = seatcost * int(num_tickets) * 0.0725
+    total_cost = seatcost * int(num_tickets) * 1.0725
     print(f"{'name: ': <15}", name)
     print(f"{'email: ': <15}", email)
     print(f"{'number of tickets: ': <15}", num_tickets)
@@ -114,6 +112,13 @@ def buy_tickets():
 
 def search_buyer():
     name = input("Please enter your name to see the tickets purchased")
+    if name in name_and_emailDict:
+        print(name +  ", you purchased: " + name_and_emailDict[name])
+
+    else:
+        print(name + "did not purchase any ticket")
+
+        
 
 dash = "-" * 40
 print(dash)
@@ -130,12 +135,8 @@ while (not userquit):
     print("[d] display all the purchases made and total income")
     command = input("Enter command: ")
 
-    if command == "v":
-        if start == 0:
-            start_seat = create_seating()
-            new_seat = print_seating(start_seat)
-        else: 
-            new_seat = print_seating(start_seat)
+    if command == "v": 
+        print_seating(seating)
     elif command == "b":
         buy_tickets()
     elif command == "s":
