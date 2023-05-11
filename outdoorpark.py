@@ -43,19 +43,30 @@ def print_seating(seat_data):
     print(end="\t")
     for l in let_array:
         print(l + " ", end="")
+    print( "\t", "type", "\t", "cost", end = "")
     print()
     # print available seating
     for r in range(n_row):
         print(r+1, end="\t")
         for c in range(n_col):
             print(seat_data[r][c], end=" ")
+        print(" ", end = "\t")
+        if r >= 0 and r <= 4:
+            print( "front", "\t", end = "")
+            print("$80", end = "" )
+        elif r>= 5 and r <= 10:
+            print("middle", "\t", end = "")
+            print("$50", end = "")
+        elif r >= 11 and r<=19:
+            print("back", "\t", end = "")
+            print("$25", end = "")
         print()
     return seat_data
 
 def update(new_seat, seat_num, num_tickets):
 
     col = seat_num[len(seat_num) - 1]
-    row = int(seat_num[:-1])
+    row = int(seat_num[:-1]) - 1
     
     col = ord(col) -97
     
@@ -92,7 +103,7 @@ def update(new_seat, seat_num, num_tickets):
 def check_seats(num_tickets, seat_num):
     open = True
     col = seat_num[len(seat_num) - 1]
-    row = int(seat_num[:-1])
+    row = int(seat_num[:-1]) - 1
     col = ord(col) - 97
 
     for c in range(num_tickets):
@@ -116,9 +127,9 @@ def buy_tickets():
     email = input("what is your email address? " )
 
     col = seat_num[len(seat_num) - 1]
-    row = int(seat_num[:-1])
+    row = int(seat_num[:-1]) - 1
     
-    if row >= 1 and row <= 5:
+    if row >= 0 and row <= 4:
         seat_type = "front"
     elif row >= 5 and row <= 10:
         seat_type = "middle"

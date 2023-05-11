@@ -10,9 +10,6 @@ class receipt:
         self.seat_num = seat_num
         self.cost = cost
 
-    def list_to_dict(self):
-        return 
-
     def print_receipt(self):
         dash = '-' * 40
         print(dash)
