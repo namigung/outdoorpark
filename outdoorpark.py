@@ -56,9 +56,9 @@ def update(new_seat, seat_num, num_tickets):
 
     col = seat_num[len(seat_num) - 1]
     row = int(seat_num[:-1])
-    print(row)
+    
     col = ord(col) -97
-    print(col)
+    
     n = 0
 
     #prints X
@@ -104,8 +104,8 @@ def check_seats(num_tickets, seat_num):
 
 
 def buy_tickets():
-    num_tickets = int(input("How many tickets would you want to buy?"))
-    seat_num = input("Which seats would you like to buy ex. A0")
+    num_tickets = int(input("How many tickets would you want to buy? "))
+    seat_num = input("Which seats would you like to buy ex. 0A ")
     seats_avail = check_seats(num_tickets, seat_num)
     if seats_avail:
         update(seating, seat_num, num_tickets)
@@ -113,7 +113,7 @@ def buy_tickets():
         print("This seat is not available")
         return None
     name = input("what is your name? ").lower()
-    email = input("what is your email address?" )
+    email = input("what is your email address? " )
 
     col = seat_num[len(seat_num) - 1]
     row = int(seat_num[:-1])
@@ -154,7 +154,7 @@ def update_json():
 
 
 def search_buyer():
-    name = input("Please enter your name to see the tickets purchased")
+    name = input("Please enter your name to see the tickets purchased: ")
     for person in purchase:
         if person.name == name:
             person.print_receipt()
